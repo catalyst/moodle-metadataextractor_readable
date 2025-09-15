@@ -13,13 +13,13 @@ class TextStatisticsTest extends \PHPUnit\Framework\TestCase
 
     protected $TextStatistics = null;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->TextStatistics = new DaveChild\TextStatistics\TextStatistics();
         $this->TextStatistics->normalise = false;
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         unset($this->objTextStatistics);
     }
@@ -28,6 +28,7 @@ class TextStatisticsTest extends \PHPUnit\Framework\TestCase
     -------------------- */
     public function testCleaning()
     {
+        $this->assertSame('', DaveChild\TextStatistics\Text::cleanText(null));
         $this->assertSame('', DaveChild\TextStatistics\Text::cleanText(false));
         $this->assertSame('There once was a little sausage named Baldrick. and he lived happily ever after.', DaveChild\TextStatistics\Text::cleanText('There once was a little sausage named Baldrick. . . .  And he lived happily ever after.!! !??'));
     }
